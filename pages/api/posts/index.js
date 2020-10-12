@@ -28,7 +28,7 @@ async function GET(req, res) {
 
   const posts = (await db.get()).posts.map((d) => ({
     ...d,
-    body: d.body.substring(0, 50) + (d.body.length > 100 ? '...' : ''), // Don't return full body in list calls
+    body: d.body.substring(0, 50) + (d.body.length > 50 ? '...' : ''), // Don't return full body in list calls
   }))
 
   if (Number(pageSize)) {
