@@ -14,8 +14,9 @@ export const prefetchPost = (postId) => {
 
 export default function usePost(postId) {
   return useQuery(['posts', postId], fetchPost, {
-    placeholderData: () =>
-      console.log(queryCache.getQueryData('posts')) ||
+    // This may come in the future!
+    // placeholderData: () =>queryCache.getQueryData('posts')?.find((d) => d.id == postId),
+    initialData: () =>
       queryCache.getQueryData('posts')?.find((d) => d.id == postId),
     staleTime: 2000,
   })
