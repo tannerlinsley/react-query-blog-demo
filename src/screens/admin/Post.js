@@ -21,6 +21,7 @@ export default function Post() {
   const onSubmit = async (values) => {
     await savePost(values)
     postQuery.fetch()
+    savePost(values)
   }
 
   const onDelete = async () => {

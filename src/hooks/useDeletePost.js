@@ -1,20 +1,23 @@
-import React from 'react'
 import axios from 'axios'
+import { useMutation } from 'react-query'
+
+import { queryCache } from '../'
 
 export default function useDeletePost() {
-  const [state, setState] = React.useReducer((_, action) => action, {
-    isIdle: true,
-  })
+  return useMutation(
+    (postId) => axios.delete(`/api/posts/${postId}`).then((res) => res.data),
+    {
+      onError: (error, variables, rollback) => {
+        rollback && rollback()
+      },
+      onSuccess: (data, postId) => {
+        const previousPosts = queryCache.getQueryData('posts')
 
-  const mutate = React.useCallback(async (postId) => {
-    setState({ isLoading: true })
-    try {
-      await axios.delete(`/api/posts/${postId}`).then((res) => res.data)
-      setState({ isSuccess: true })
-    } catch (error) {
-      setState({ isError: true, error })
+        const optimisticPosts = previousPosts.filter((d) => d.id !== postId)
+
+        queryCache.setQueryData('posts', optimisticPosts)
+        queryCache.invalidateQueries('posts')
+      },
     }
-  }, [])
-
-  return [mutate, state]
+  )
 }
