@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ReactQueryCacheProvider, QueryCache } from 'react-query'
 import { ReactQueryDevtools } from 'react-query-devtools'
-// import { hydrate, dehydrate } from 'react-query/hydration'
+import { hydrate, dehydrate } from 'react-query/hydration'
 //
 
 import { Wrapper, Main } from './components/styled'
@@ -16,20 +16,20 @@ import BlogPost from './screens/blog/Post'
 
 export const queryCache = new QueryCache()
 
-// function restoreCache() {
-//   if (typeof localStorage !== 'undefined') {
-//     let cache = localStorage.getItem('queryCache_1')
-//     if (cache) {
-//       hydrate(queryCache, JSON.parse(cache))
-//     }
+function restoreCache() {
+  if (typeof localStorage !== 'undefined') {
+    let cache = localStorage.getItem('queryCache_1')
+    if (cache) {
+      hydrate(queryCache, JSON.parse(cache))
+    }
 
-//     queryCache.subscribe((cache) => {
-//       localStorage.setItem('queryCache_1', JSON.stringify(dehydrate(cache)))
-//     })
-//   }
-// }
+    queryCache.subscribe((cache) => {
+      localStorage.setItem('queryCache_1', JSON.stringify(dehydrate(cache)))
+    })
+  }
+}
 
-// restoreCache()
+restoreCache()
 
 function SafeHydrate({ children }) {
   return (
