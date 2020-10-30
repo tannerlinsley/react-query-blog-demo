@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { css, keyframes } from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { ImSpinner2 } from 'react-icons/im'
 
 export const Wrapper = styled.div`
@@ -30,13 +30,6 @@ export const PostStyles = styled.div`
       text-decoration: underline;
     }
   }
-
-  ${(props) =>
-    props.disabled &&
-    css`
-      opacity: 0.5;
-      pointer-events: none;
-    `}
 `
 
 const rotate = keyframes`
