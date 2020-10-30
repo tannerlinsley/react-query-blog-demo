@@ -19,8 +19,7 @@ export default function Post() {
   const [deletePost, deletePostInfo] = useDeletePost()
 
   const onSubmit = async (values) => {
-    await savePost(values)
-    postQuery.fetch()
+    savePost(values)
   }
 
   const onDelete = async () => {

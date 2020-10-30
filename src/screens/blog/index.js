@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-//
+
 import usePosts from '../../hooks/usePosts'
+import { prefetchPost } from '../../hooks/usePost'
+
 import { PostStyles } from '../../components/styled'
 
 export default function Home() {
@@ -24,7 +26,14 @@ export default function Home() {
           postsQuery.error.message
         ) : (
           postsQuery.data.map((post) => (
-            <PostStyles as={Link} to={`./${post.id}`} key={post.id}>
+            <PostStyles
+              as={Link}
+              to={`./${post.id}`}
+              key={post.id}
+              onMouseEnter={() => {
+                prefetchPost(post.id)
+              }}
+            >
               <h3>{post.title}</h3>
               <p>{post.body}</p>
             </PostStyles>
