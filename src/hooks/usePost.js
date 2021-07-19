@@ -12,9 +12,7 @@ export default function usePost(postId) {
   // this way each key being different for each post won't replace other post data
   return useQuery(['post', postId], () => fetchPost(postId), {
     initialData: () => {
-      return queryClient
-        .getQueryData('posts')
-        ?.find((d) => Number(d.id) === Number(postId))
+      return queryClient.getQueryData('posts')?.find((d) => d.id == postId)
     },
   })
 }
