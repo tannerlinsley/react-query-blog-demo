@@ -1,5 +1,5 @@
-import React from 'react'
-import { Loader } from './styled'
+import React from 'react';
+import { Loader } from './styled';
 
 export default function GlobalLoader() {
   return (
@@ -15,5 +15,5 @@ export default function GlobalLoader() {
         opacity: 1,
       }}
     />
-  )
+  );
 }

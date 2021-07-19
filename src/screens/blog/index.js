@@ -1,11 +1,11 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-//
-import usePosts from '../../hooks/usePosts'
-import { PostStyles } from '../../components/styled'
+import React from 'react';
+import Link from 'next/link';
+
+import usePosts from '../../hooks/usePosts';
+import { PostStyles } from '../../components/styled';
 
 export default function Home() {
-  const postsQuery = usePosts()
+  const postsQuery = usePosts();
 
   return (
     <div>
@@ -18,19 +18,25 @@ export default function Home() {
           grid-gap: 1rem;
         `}
       >
-        {postsQuery.isLoading ? (
-          <span>Loading...</span>
-        ) : postsQuery.isError ? (
-          postsQuery.error.message
-        ) : (
+        {postsQuery.isLoading && <span>Loading...</span>}
+        {postsQuery.isError && postsQuery.error.message}
+        {!postsQuery.isLoading &&
+          !postsQuery.isError &&
           postsQuery.data.map((post) => (
-            <PostStyles as={Link} to={`./${post.id}`} key={post.id}>
-              <h3>{post.title}</h3>
-              <p>{post.body}</p>
-            </PostStyles>
-          ))
-        )}
+            <Link
+              href={{
+                pathname: `/post/[postId]`,
+                query: { postId: post.id },
+              }}
+              key={post.id}
+            >
+              <PostStyles>
+                <h3>{post.title}</h3>
+                <p>{post.body}</p>
+              </PostStyles>
+            </Link>
+          ))}
       </div>
     </div>
-  )
+  );
 }

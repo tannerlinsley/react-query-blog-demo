@@ -1,10 +1,10 @@
-const Module = require('module')
-const path = require('path')
-const resolveFrom = require('resolve-from')
+const Module = require('module');
+const path = require('path');
+const resolveFrom = require('resolve-from');
 
-const node_modules = path.resolve(__dirname, 'node_modules')
+const node_modules = path.resolve(__dirname, 'node_modules');
 
-const originalRequire = Module.prototype.require
+const originalRequire = Module.prototype.require;
 
 // The following ensures that there is always only a single (and same)
 // copy of React in an app at any given moment.
@@ -13,21 +13,21 @@ Module.prototype.require = function (modulePath) {
   if (
     ['/react/', '/react-dom/', '/react-query/'].some((d) => {
       try {
-        return require.resolve(modulePath).includes(d)
+        return require.resolve(modulePath).includes(d);
       } catch (err) {
-        return false
+        return false;
       }
     })
   ) {
     try {
-      modulePath = resolveFrom(node_modules, modulePath)
+      modulePath = resolveFrom(node_modules, modulePath);
     } catch (err) {
       //
     }
   }
 
-  return originalRequire.call(this, modulePath)
-}
+  return originalRequire.call(this, modulePath);
+};
 
 module.exports = {
   target: 'serverless',
@@ -41,7 +41,7 @@ module.exports = {
         source: '/:any*',
         destination: '/',
       },
-    ]
+    ];
   },
   webpack: (config) => {
     config.resolve = {
@@ -55,7 +55,7 @@ module.exports = {
         ),
         'react-dom$': resolveFrom(path.resolve('node_modules'), 'react-dom'),
       },
-    }
-    return config
+    };
+    return config;
   },
-}
+};

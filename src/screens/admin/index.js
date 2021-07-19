@@ -1,20 +1,20 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import PostForm from '../../components/PostForm'
-import { Loader } from '../../components/styled'
+import PostForm from '../../components/post-form';
+import { Loader } from '../../components/styled';
 
-import usePosts from '../../hooks/usePosts'
-import useCreatePost from '../../hooks/useCreatePost'
+import usePosts from '../../hooks/usePosts';
+import useCreatePost from '../../hooks/useCreatePost';
 
 export default function Posts() {
-  const postsQuery = usePosts()
-  const [createPost, createPostInfo] = useCreatePost()
+  const postsQuery = usePosts();
+  const [createPost, createPostInfo] = useCreatePost();
 
   const onSubmit = async (values) => {
-    await createPost(values)
-    postsQuery.fetch()
-  }
+    await createPost(values);
+    postsQuery.fetch();
+  };
 
   return (
     <section>
@@ -59,5 +59,5 @@ export default function Posts() {
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import { Link, useParams, useHistory } from 'next/link'
 
 //
 
@@ -7,12 +7,12 @@ import usePost from '../../hooks/usePost'
 import useSavePost from '../../hooks/useSavePost'
 import useDeletePost from '../../hooks/useDeletePost'
 
-import PostForm from '../../components/PostForm'
+import PostForm from '../../components/post-form'
 import { Loader } from '../../components/styled'
 
 export default function Post() {
   const { postId } = useParams()
-  const navigate = useNavigate()
+  const { push } = useHistory()
 
   const postQuery = usePost(postId)
   const [savePost, savePostInfo] = useSavePost()
@@ -25,7 +25,7 @@ export default function Post() {
 
   const onDelete = async () => {
     await deletePost(postId)
-    navigate('/admin')
+    push('/admin')
   }
 
   return (

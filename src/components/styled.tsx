@@ -1,22 +1,22 @@
-import React from 'react'
-import styled, { keyframes } from 'styled-components'
-import { ImSpinner2 } from 'react-icons/im'
+import React, { FC } from 'react';
+import styled, { keyframes } from 'styled-components';
+import { ImSpinner2 } from 'react-icons/im';
 
 export const Wrapper = styled.div`
   display: flex;
   height: 96vh;
-`
+`;
 
 export const SidebarStyles = styled.div`
   width: 175px;
   border-right: 1px solid black;
   padding: 1rem;
-`
+`;
 
-export const Main = styled.div`
+export const Content = styled.div`
   flex: 1;
   padding: 1rem;
-`
+`;
 
 export const PostStyles = styled.div`
   display: inline-block;
@@ -30,7 +30,7 @@ export const PostStyles = styled.div`
       text-decoration: underline;
     }
   }
-`
+`;
 
 const rotate = keyframes`
   from {
@@ -40,16 +40,14 @@ const rotate = keyframes`
   to {
     transform: rotate(360deg);
   }
-`
+`;
 
-export function Loader(props) {
-  return (
-    <ImSpinner2
-      {...props}
-      css={`
-        vertical-align: middle;
-        animation: ${rotate} 1s linear infinite;
-      `}
-    />
-  )
-}
+export const Loader: FC = (props) => (
+  <ImSpinner2
+    {...props}
+    style={{
+      verticalAlign: 'middle',
+      animation: `${rotate} 1s linear infinite`,
+    }}
+  />
+);

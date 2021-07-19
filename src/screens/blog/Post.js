@@ -1,13 +1,9 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import React from 'react';
 
-//
+import usePost from '../../hooks/usePost';
 
-import usePost from '../../hooks/usePost'
-
-export default function Post() {
-  const { postId } = useParams()
-  const postQuery = usePost(postId)
+export function Post({ postId }) {
+  const postQuery = usePost(postId);
 
   return (
     <>
@@ -22,5 +18,5 @@ export default function Post() {
         </div>
       )}
     </>
-  )
+  );
 }
