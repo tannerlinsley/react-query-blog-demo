@@ -1,32 +1,28 @@
-import React from 'react'
-import { Link, useParams, useHistory } from 'next/link'
+import React from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import usePost from '../../hooks/usePost';
+import useSavePost from '../../hooks/useSavePost';
+import useDeletePost from '../../hooks/useDeletePost';
+import PostForm from '../../components/post-form';
+import { Loader } from '../../components/styled';
 
-//
+export default function AdminView() {
+  const { query: { adminId }, push } = useRouter();
 
-import usePost from '../../hooks/usePost'
-import useSavePost from '../../hooks/useSavePost'
-import useDeletePost from '../../hooks/useDeletePost'
-
-import PostForm from '../../components/post-form'
-import { Loader } from '../../components/styled'
-
-export default function Post() {
-  const { postId } = useParams()
-  const { push } = useHistory()
-
-  const postQuery = usePost(postId)
-  const [savePost, savePostInfo] = useSavePost()
-  const [deletePost, deletePostInfo] = useDeletePost()
+  const postQuery = usePost(adminId);
+  const [savePost, savePostInfo] = useSavePost();
+  const [deletePost, deletePostInfo] = useDeletePost();
 
   const onSubmit = async (values) => {
-    await savePost(values)
-    postQuery.fetch()
-  }
+    await savePost(values);
+    postQuery.fetch();
+  };
 
   const onDelete = async () => {
-    await deletePost(postId)
-    push('/admin')
-  }
+    await deletePost(adminId);
+    push('/admin'); 
+  };
 
   return (
     <>
@@ -38,7 +34,10 @@ export default function Post() {
         <div>
           <h3>{postQuery.data.title}</h3>
           <p>
-            <Link to={`/blog/${postQuery.data.id}`}>View Post</Link>
+            <Link href={{
+                pathname: `/posts/[postId]`,
+                query: { postId: postQuery.data.id },
+              }}>View Post</Link>
           </p>
           <PostForm
             initialValues={postQuery.data}
@@ -68,5 +67,5 @@ export default function Post() {
         </div>
       )}
     </>
-  )
+  );
 }

@@ -1,13 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
+import Link from 'next/link';
 import PostForm from '../../components/post-form';
 import { Loader } from '../../components/styled';
-
 import usePosts from '../../hooks/usePosts';
 import useCreatePost from '../../hooks/useCreatePost';
 
-export default function Posts() {
+export default function Admin() {
   const postsQuery = usePosts();
   const [createPost, createPostInfo] = useCreatePost();
 
@@ -30,7 +28,11 @@ export default function Posts() {
               <ul>
                 {postsQuery.data.map((post) => (
                   <li key={post.id}>
-                    <Link to={`./${post.id}`}>{post.title}</Link>
+                    <Link href={{
+                        pathname: `/admin/[adminId]`,
+                        query: { adminId: post.id },
+                    }}>
+                    {post.title}</Link>
                   </li>
                 ))}
               </ul>

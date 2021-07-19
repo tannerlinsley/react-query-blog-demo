@@ -9,7 +9,7 @@ async function GET(req, res) {
   } = req;
 
   const row = (await db.get()).posts.find((d) => d.id == postId);
-
+console.log('here is the row', row);
   if (!row) {
     res.status(404);
     return res.send('Not found');

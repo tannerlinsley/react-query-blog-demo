@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-
 import usePosts from '../../hooks/usePosts';
 import { PostStyles } from '../../components/styled';
 
@@ -25,7 +24,7 @@ export default function Home() {
           postsQuery.data.map((post) => (
             <Link
               href={{
-                pathname: `/post/[postId]`,
+                pathname: `/posts/[postId]`,
                 query: { postId: post.id },
               }}
               key={post.id}
