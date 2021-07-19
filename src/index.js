@@ -11,6 +11,7 @@ import Admin from './screens/admin'
 import AdminPost from './screens/admin/Post'
 import Blog from './screens/blog'
 import BlogPost from './screens/blog/Post'
+import GlobalLoader from './components/GlobalLoader'
 
 function SafeHydrate({ children }) {
   return (
@@ -29,6 +30,7 @@ export default function App() {
         <BrowserRouter>
           <Wrapper>
             <Sidebar />
+            <GlobalLoader />
             <Main>
               <Routes>
                 <Route
