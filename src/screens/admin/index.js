@@ -9,12 +9,7 @@ import useCreatePost from '../../hooks/useCreatePost'
 
 export default function Posts() {
   const postsQuery = usePosts()
-  const [createPost, createPostInfo] = useCreatePost()
-
-  const onSubmit = async (values) => {
-    await createPost(values)
-    postsQuery.fetch()
-  }
+  const { mutateAsync: createPost, ...createPostInfo } = useCreatePost()
 
   return (
     <section>
@@ -44,7 +39,7 @@ export default function Posts() {
         <h3>Create New Post</h3>
         <div>
           <PostForm
-            onSubmit={onSubmit}
+            onSubmit={createPost}
             clearOnSubmit
             submitText={
               createPostInfo.isLoading
