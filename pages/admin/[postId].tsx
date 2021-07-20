@@ -62,6 +62,7 @@ const AdminPost: FC<{ postId?: string }> = () => {
             </Link>
           </p>
           <PostForm
+            loading={postQuery.isLoading}
             initialValues={postQuery.data}
             onSubmit={onSubmit}
             submitText={getSubmitButtonText()}
