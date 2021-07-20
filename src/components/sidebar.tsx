@@ -7,14 +7,20 @@ const Sidebar: FC = () => (
   <SidebarStyles>
     <ul>
       <li>
-        <Link href="/">Home</Link>
+        <Link href="/">
+          <a>Home</a>
+        </Link>
       </li>
       <li>
-        <Link href="/posts">Blog</Link>
+        <Link href="/exercises">
+          <a>Exercises</a>
+        </Link>
       </li>
       <hr />
       <li>
-        <Link href="/admin">Admin</Link>
+        <Link href="/admin">
+          <a>Admin</a>
+        </Link>
       </li>
     </ul>
   </SidebarStyles>

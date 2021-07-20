@@ -3,22 +3,22 @@ import React from 'react';
 export default function NotFound() {
   return (
     <div
-      css={`
-        text-align: center;
-      `}
+      style={{
+        textAlign: 'center',
+      }}
     >
       <h1
-        css={`
-          font-size: 4rem;
-          margin: 0;
-        `}
+        style={{
+          fontSize: '4rem',
+          margin: '0',
+        }}
       >
         404
       </h1>
       <p
-        css={`
-          margin: 0;
-        `}
+        style={{
+          margin: '0',
+        }}
       >
         Page not found
       </p>

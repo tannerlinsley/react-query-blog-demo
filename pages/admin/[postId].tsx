@@ -62,7 +62,7 @@ const AdminPost: FC<{ postId?: string }> = () => {
             </Link>
           </p>
           <PostForm
-            loading={postQuery.isLoading}
+            loading={deletePostInfo.isLoading}
             initialValues={postQuery.data}
             onSubmit={onSubmit}
             submitText={getSubmitButtonText()}
@@ -80,8 +80,7 @@ const AdminPost: FC<{ postId?: string }> = () => {
 export default AdminPost;
 
 export async function getServerSideProps() {
-    return {
-      props: {}, // will be passed to the page component as props
-    };
-  }
-
+  return {
+    props: {}, // will be passed to the page component as props
+  };
+}

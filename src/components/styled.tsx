@@ -43,11 +43,9 @@ const rotate = keyframes`
   }
 `;
 
-const Spinner = styled(ImSpinner2)`
+export const Loader = styled(ImSpinner2)`
   vertical-align: middle;
   animation: ${css`
     ${rotate} 1s linear infinite
   `};
 `;
-
-export const Loader: FC<IconBaseProps> = (props) => <Spinner {...props} />;

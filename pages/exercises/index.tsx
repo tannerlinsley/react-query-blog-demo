@@ -4,13 +4,13 @@ import { Layout } from '../../src/components/layout';
 import { Loader, PostStyles } from '../../src/components/styled';
 import usePosts from '../../src/hooks/usePosts';
 
-const BlogPosts: FC = () => {
+const ExercisePosts: FC = () => {
   const postsQuery = usePosts();
 
   return (
     <Layout>
       <div>
-        <h1>Blog</h1>
+        <h1>Exercises</h1>
 
         <div
           style={{
@@ -26,7 +26,7 @@ const BlogPosts: FC = () => {
           )}
           {postsQuery.isError && postsQuery.error.message}
           {!postsQuery.isLoading &&
-            !postsQuery.isError &&
+            postsQuery.isSuccess &&
             postsQuery.data.map((post) => (
               <Link
                 href={{
@@ -48,4 +48,4 @@ const BlogPosts: FC = () => {
   );
 };
 
-export default BlogPosts;
+export default ExercisePosts;

@@ -7,7 +7,7 @@ import { Loader } from '../../src/components/styled';
 
 const Post: FC<{ postId?: string }> = () => {
   const { query } = useRouter();
-  const postQuery = usePost(query.postId);
+  const postQuery = usePost(query['post-id']);
 
   if (postQuery.isError) return <Layout>{postQuery.error.message}</Layout>;
 

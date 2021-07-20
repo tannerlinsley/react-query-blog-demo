@@ -44,7 +44,7 @@ const Admin: FC = () => {
                         query: { postId: post.id },
                       }}
                     >
-                      {post.title}
+                      <a>{post.title}</a>
                     </Link>
                   </li>
                 ))}
