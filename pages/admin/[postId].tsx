@@ -8,7 +8,7 @@ import useDeletePost from '../../src/hooks/useDeletePost';
 import { Loader } from '../../src/components/styled';
 import { PostForm } from '../../src/components/post-form';
 
-const AdminPost: FC<{ postId?: string }> = () => {
+const AdminPost: FC = () => {
   const { query, push } = useRouter();
 
   const postQuery = usePost(query.postId);

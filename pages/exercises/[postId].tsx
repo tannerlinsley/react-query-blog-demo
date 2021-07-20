@@ -5,7 +5,7 @@ import { Layout } from '../../src/components/layout';
 import usePost from '../../src/hooks/usePost';
 import { Loader } from '../../src/components/styled';
 
-const Post: FC<{ postId?: string }> = () => {
+const Post: FC = () => {
   const { query } = useRouter();
   const postQuery = usePost(query['post-id']);
 
