@@ -1,32 +1,47 @@
-import React from 'react'
+import React, { FC } from 'react';
+import { Loader } from './styled';
 
 const defaultFormValues = {
   title: '',
   body: '',
+};
+
+interface FormValues {
+  title: string;
+  body: string;
 }
 
-export default function PostForm({
+interface Props {
+  onSubmit: (formValue: FormValues) => void;
+  loading: boolean;
+  initialValues?: FormValues;
+  submitText: string;
+  clearOnSubmit?: boolean;
+}
+
+export const PostForm: FC<Props> = ({
   onSubmit,
+  loading,
   initialValues = defaultFormValues,
   submitText,
   clearOnSubmit,
-}) {
-  const [values, setValues] = React.useState(initialValues)
+}) => {
+  const [values, setValues] = React.useState<FormValues>(initialValues);
 
   const setValue = (field, value) =>
-    setValues((old) => ({ ...old, [field]: value }))
+    setValues((old) => ({ ...old, [field]: value }));
 
   const handleSubmit = (e) => {
     if (clearOnSubmit) {
-      setValues(defaultFormValues)
+      setValues(defaultFormValues);
     }
-    e.preventDefault()
-    onSubmit(values)
-  }
+    e.preventDefault();
+    onSubmit(values);
+  };
 
   React.useEffect(() => {
-    setValues(initialValues)
-  }, [initialValues])
+    setValues(initialValues);
+  }, [initialValues]);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -44,16 +59,17 @@ export default function PostForm({
       <label htmlFor="body">body</label>
       <div>
         <textarea
-          type="text"
           name="body"
           value={values.body}
           onChange={(e) => setValue('body', e.target.value)}
           required
-          rows="10"
+          rows={10}
         />
       </div>
       <br />
-      <button type="submit">{submitText}</button>
+      <button type="submit">
+        {loading && <Loader />} {submitText}
+      </button>
     </form>
-  )
-}
+  );
+};
