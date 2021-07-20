@@ -29,10 +29,3 @@ const Post: FC<{ postId?: string }> = () => {
 };
 
 export default Post;
-
-
-export async function getServerSideProps(context) {
-    return {
-      props: {postId: context.params.postId}, // will be passed to the page component as props
-    };
-  }
