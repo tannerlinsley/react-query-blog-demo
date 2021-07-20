@@ -19,7 +19,7 @@ export const Content = styled.div`
   padding: 1rem;
 `;
 
-export const PostStyles = styled.div`
+export const PostStyles = styled.a`
   display: inline-block;
   border: solid 1px rgba(130, 130, 130, 0.3);
   padding: 1rem;

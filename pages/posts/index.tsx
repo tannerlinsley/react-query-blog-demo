@@ -34,6 +34,7 @@ const BlogPosts: FC = () => {
                   query: { postId: post.id },
                 }}
                 key={post.id}
+                passHref
               >
                 <PostStyles>
                   <h3>{post.title}</h3>

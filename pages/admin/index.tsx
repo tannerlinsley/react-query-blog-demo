@@ -58,6 +58,7 @@ const Admin: FC = () => {
           <h3>Create New Post</h3>
           <div>
             <PostForm
+              loading={createPostInfo.isLoading}
               onSubmit={onSubmit}
               clearOnSubmit
               submitText={getSubmitText()}

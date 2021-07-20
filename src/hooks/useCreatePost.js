@@ -9,7 +9,7 @@ export default function useCreatePost() {
   const mutate = React.useCallback(async (values) => {
     setState({ isLoading: true });
     try {
-      const data = axios.post('/api/posts', values).then((res) => res.data);
+      const data = await axios.post('/api/posts', values);
       setState({ isSuccess: true, data });
     } catch (error) {
       setState({ isError: true, error });

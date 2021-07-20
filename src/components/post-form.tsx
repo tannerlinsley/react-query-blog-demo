@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Loader } from './styled';
 
 const defaultFormValues = {
   title: '',
@@ -12,6 +13,7 @@ interface FormValues {
 
 interface Props {
   onSubmit: (formValue: FormValues) => void;
+  loading: boolean;
   initialValues?: FormValues;
   submitText: string;
   clearOnSubmit?: boolean;
@@ -19,6 +21,7 @@ interface Props {
 
 export const PostForm: FC<Props> = ({
   onSubmit,
+  loading,
   initialValues = defaultFormValues,
   submitText,
   clearOnSubmit,
@@ -64,7 +67,9 @@ export const PostForm: FC<Props> = ({
         />
       </div>
       <br />
-      <button type="submit">{submitText}</button>
+      <button type="submit">
+        {loading && <Loader />} {submitText}
+      </button>
     </form>
   );
 };

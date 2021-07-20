@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "type-check": "tsc --noEmit",
-    "lint": "eslint . --fix"
+    "lint": "next lint"
   },
   "dependencies": {
     "axios": "^0.20.0",
@@ -32,6 +32,7 @@
     "@typescript-eslint/parser": "^4.28.3",
     "eslint": "^7.2.0",
     "eslint-config-airbnb-base": "14.2.1",
+    "eslint-config-next": "^11.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
