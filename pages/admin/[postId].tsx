@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { useRouter } from 'next/router';
-
 import Link from 'next/link';
 import { Layout } from '../../src/components/layout';
 import usePost from '../../src/hooks/usePost';
@@ -78,3 +77,10 @@ const AdminPost: FC<{ postId?: string }> = () => {
 };
 
 export default AdminPost;
+
+export async function getServerSideProps() {
+    return {
+      props: {}, // will be passed to the page component as props
+    };
+  }
+
