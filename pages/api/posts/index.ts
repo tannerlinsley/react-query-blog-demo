@@ -2,25 +2,8 @@ import shortid from 'shortid';
 import db from '../../../db';
 import { sleep } from '../../../utils';
 
-//
+// allows you to simulate flakey API's
 const failureRate = 0;
-
-export default async (req, res) => {
-  await sleep(1000);
-
-  try {
-    if (req.method === 'GET') {
-      return await GET(req, res);
-    }
-    if (req.method === 'POST') {
-      return await POST(req, res);
-    }
-  } catch (err) {
-    console.error(err);
-    res.status(500);
-    res.json({ message: 'An unknown error occurred!' });
-  }
-};
 
 async function GET(req, res) {
   const {
@@ -64,4 +47,22 @@ async function POST(req, res) {
   }));
 
   res.json(row);
+}
+
+export default async function PostsApi(req, res) {
+  await sleep(1000);
+
+  try {
+    if (req.method === 'GET') {
+      return await GET(req, res);
+    }
+    if (req.method === 'POST') {
+      return await POST(req, res);
+    }
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error(err);
+    res.status(500);
+    res.json({ message: 'An unknown error occurred!' });
+  }
 }

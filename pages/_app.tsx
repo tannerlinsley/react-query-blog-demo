@@ -1,7 +1,7 @@
-import React from 'react'
-import App from 'next/app'
-import { createGlobalStyle } from 'styled-components'
-import normalize from 'styled-normalize'
+import React from 'react';
+import App from 'next/app';
+import { createGlobalStyle } from 'styled-components';
+import normalize from 'styled-normalize';
 
 //
 
@@ -29,17 +29,22 @@ const GlobalStyles = createGlobalStyle`
   a {
     text-decoration: none;
     cursor: pointer;
+
+    :hover { text-decoration: none; }
+    :active { text-decoration: none; }
+    :visited { text-decoration: none; }
+    :link { text-decoration: none; }
   }
-`
+`;
 
 export default class MyApp extends App {
   render() {
-    const { Component, pageProps } = this.props
+    const { Component, pageProps } = this.props;
     return (
       <>
         <GlobalStyles />
         <Component {...pageProps} />
       </>
-    )
+    );
   }
 }
