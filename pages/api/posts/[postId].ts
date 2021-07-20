@@ -79,8 +79,7 @@ async function DELETE(req, res) {
   res.send('Resource Deleted');
 }
 
-// eslint-disable-next-line consistent-return
-export default async (req, res) => {
+export default async function PostApi(req, res) {
   await sleep(1000);
 
   try {
@@ -94,8 +93,9 @@ export default async (req, res) => {
       return await DELETE(req, res);
     }
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error(err);
     res.status(500);
     res.json({ message: 'An unknown error occurred!' });
   }
-};
+}

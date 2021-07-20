@@ -1,14 +1,15 @@
+/* eslint-disable no-param-reassign */
 const Module = require('module');
 const path = require('path');
 const resolveFrom = require('resolve-from');
 
-const node_modules = path.resolve(__dirname, 'node_modules');
+const nodeModules = path.resolve(__dirname, 'node_modules');
 
 const originalRequire = Module.prototype.require;
 
 // The following ensures that there is always only a single (and same)
 // copy of React in an app at any given moment.
-Module.prototype.require = function (modulePath) {
+Module.prototype.require = function resolveReact(modulePath) {
   // Only redirect resolutions to non-relative and non-absolute modules
   if (
     ['/react/', '/react-dom/', '/react-query/'].some((d) => {
@@ -20,7 +21,7 @@ Module.prototype.require = function (modulePath) {
     })
   ) {
     try {
-      modulePath = resolveFrom(node_modules, modulePath);
+      modulePath = resolveFrom(nodeModules, modulePath);
     } catch (err) {
       //
     }

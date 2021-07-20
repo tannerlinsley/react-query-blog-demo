@@ -51,6 +51,7 @@ module.exports = {
       plugins: ['@typescript-eslint'],
       rules: {
         '@typescript-eslint/no-use-before-define': ['error'],
+        '@typescript-eslint/explicit-module-boundary-types': 0,
       },
     },
   ],

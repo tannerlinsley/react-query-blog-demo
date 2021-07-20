@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import { ImSpinner2 } from 'react-icons/im';
+import { IconBaseProps } from 'react-icons';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -42,12 +43,11 @@ const rotate = keyframes`
   }
 `;
 
-export const Loader: FC = (props) => (
-  <ImSpinner2
-    {...props}
-    style={{
-      verticalAlign: 'middle',
-      animation: `${rotate} 1s linear infinite`,
-    }}
-  />
-);
+const Spinner = styled(ImSpinner2)`
+  vertical-align: middle;
+  animation: ${css`
+    ${rotate} 1s linear infinite
+  `};
+`;
+
+export const Loader: FC<IconBaseProps> = (props) => <Spinner {...props} />;
